@@ -2,7 +2,7 @@ import { useState } from "react"
 import Loading from "./Loading";
 
 const Homepage = () => {
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     return(
         <>
