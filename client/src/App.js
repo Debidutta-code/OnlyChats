@@ -1,16 +1,17 @@
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
-import Logo from '../src/assets/of_logo.png';
+import Homepage from "./pages/Homepage.js";
 
 function App() {
   return (
     <div className="App">
-      <img src={Logo} className="logo" alt="Logo" />
-      <h1 className="heading">
-        <span className="heading1">Only</span>
-        <span className="heading2">Chats</span>{" "}
-      </h1>
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<Homepage />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
-  
+
 export default App;

@@ -1,0 +1,75 @@
+.loading-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.667); /* Light black background */
+    z-index: 9999; /* Ensure it's on top of other elements */
+    flex-direction: column;
+  }
+  
+  .loading-content {
+    display: flex; 
+    align-items: center; 
+    opacity: 0;
+    animation: fadeinout 2s infinite, fadeout 1s infinite; /* Set infinite and adjust the timing */
+  }
+  
+  @keyframes fadeinout {
+    0%, 100% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  
+  .loading-heading {
+    font-size: 70px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  }
+  
+  .loading-heading1 {
+    color: rgb(0, 173, 239);
+  }
+  
+  .loading-heading2 {
+    color: rgb(0, 139, 206);
+  }
+  
+  .loading-logo {
+    width: 80px;
+    height: 60px;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    opacity: 0;
+    animation: fadeinout 2s infinite, fadeout 1s infinite; /* Add infinite to make it loop infinitely */
+  }
+  
+  @keyframes fadeout {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+  
+  /* Mobile Screen Settings */
+  @media (max-width: 768px) {
+    .loading-heading {
+      font-size: 40px; /* Decrease font size for smaller screens */
+    }
+  
+    .loading-logo {
+      width: 60px;
+      height: 45px;
+    }
+  }
+  
