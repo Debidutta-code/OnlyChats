@@ -89,11 +89,13 @@
     border-radius: 10px;
     margin: 20px;
     transition: all 0.3s;
+    display: flex;
+    justify-content: center;
 }
 
 .login-form-group:focus-within {
-    border-color: rgba(0, 213, 255, 0.617);
-    box-shadow: 0 0 0 2px rgba(0, 213, 255, 0.162); /* Change box shadow color when any child element is focused */
+    border-color: rgba(0, 213, 255, 0.632);
+    box-shadow: 0 0 0 4px rgba(0, 213, 255, 0.162); /* Change box shadow color when any child element is focused */
 }
 
 .login-main-form-container input{
@@ -156,6 +158,11 @@
     border: none;
     color: white;
     transition: all 0.3s;
+}
+
+.google-login-button-1{
+    display: flex;
+    justify-content: center;
 }
 
 .google-login-button:hover{

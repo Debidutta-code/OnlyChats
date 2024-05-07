@@ -37,34 +37,43 @@ const UserSchema = new mongoose.Schema({
 const User = mongoose.model("User", UserSchema);
 
 app.post("/login", async (req, res) => {
-  const { email, password } = req.body;
-  console.log(email, password);
-  try {
-    const user = await User.findOne({ email }).exec();
-    if (!user) {
-      return res.status(401).json({ message: "Invalid username or password" });
+    const { name, email, password } = req.body;
+    console.log(email, password);
+    try {
+      let user = await User.findOne({ email }).exec();
+      if (!user) {
+        // If the user does not exist, automatically register them
+        const hashedPassword = await bcrypt.hash(password, 10);
+        user = await User.create({
+            username : name,
+          email,
+          password: hashedPassword,
+        });
+
+        await user.save();
+      }
+  
+      const passwordMatch = await bcrypt.compare(password, user.password);
+  
+      if (!passwordMatch) {
+        // If passwords do not match, return an error response
+        console.log("password mismatch");
+        return res
+          .status(400)
+          .json({ success: false, message: "Invalid email or password." });
+      }
+  
+      const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, {
+        expiresIn: "10s",
+      });
+      res.cookie("token", token, { httpOnly: true, path: "/" });
+      res.json({ success: true });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Internal server error" });
     }
-
-    const passwordMatch = await bcrypt.compare(password, user.password);
-
-    if (!passwordMatch) {
-      // If passwords do not match, return an error response
-      console.log("password mismatch");
-      return res
-        .status(400)
-        .json({ success: false, message: "Invalid email or password." });
-    }
-
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, {
-      expiresIn: "10s",
-    });
-    res.cookie("token", token, { httpOnly: true, path: "/" });
-    res.json({ success: true });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal server error" });
-  }
-});
+  });
+  
 
 // Endpoint for user registration
 app.post("/register", async (req, res) => {

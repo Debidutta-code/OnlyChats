@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Login.css";
 import background from "../assets/of_wall_paper2.png";
 import Logo from "../assets/of_logo.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import "./Register.css";
+import { GoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
 
 const Register = () => {
   // State to toggle password visibility
@@ -25,14 +26,14 @@ const Register = () => {
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
+  
   // Function to toggle password visibility
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(username, email, password);
+  const handleSubmit = () => {
+    console.log("This is dev", username, email, password);
     fetch("http://localhost:8080/register", {
       method: "POST",
       headers: {
@@ -57,6 +58,13 @@ const Register = () => {
         console.error("Error:", error);
       });
   };
+
+  useEffect(() => {
+    // Call handleSubmit after setting email and password
+    if (username && email && password) {
+      handleSubmit();
+    }
+  }, [username, email, password]);
 
   return (
     <div className="login-main-container">
@@ -136,6 +144,22 @@ const Register = () => {
             <button className="google-login-button">
               Register with Google
             </button>
+            {/* <div className="google-login-button-1">
+                <GoogleLogin
+                onSuccess={(credentialResponse) => {
+                    const credentialResponseDecoded = jwtDecode(
+                    credentialResponse.credential
+                    );
+                    console.log("Login Cred - ", credentialResponseDecoded.picture);
+                    setUserName(credentialResponseDecoded.name);
+                    setEmail(credentialResponseDecoded.email);
+                    setPassword(credentialResponseDecoded.picture);
+                }}
+                onError={() => {
+                    console.log("Login Failed");
+                }}
+                />
+            </div> */}
           </div>
         </div>
       </div>
