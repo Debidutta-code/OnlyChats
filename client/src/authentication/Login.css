@@ -135,6 +135,7 @@
 
 .login-submit:hover{
     cursor: pointer;
+    background-color: rgba(164, 220, 255, 0.754);
     box-shadow: 0 0 10px rgba(0, 0, 255, 0.152);
 }
 
@@ -167,3 +168,12 @@
 .login-form-group-email{
     width: 295px;
 }
+
+@media (max-width: 768px) {
+    .login-wallpaper-container{
+        display: none;
+    }
+    .login-form-white-wallpaper-container{
+        width: 100%;
+    }
+  }

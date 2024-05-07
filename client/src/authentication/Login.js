@@ -1,16 +1,56 @@
-import React, { useState } from 'react';
-import './Login.css';
+import React, { useState } from "react";
+import "./Login.css";
 import background from "../assets/of_wall_paper2.png";
-import Logo from '../assets/of_logo.png';
+import Logo from "../assets/of_logo.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   // State to toggle password visibility
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   // Function to toggle password visibility
   const togglePasswordVisibility = () => {
-      setShowPassword(!showPassword);
+    setShowPassword(!showPassword);
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(email, password);
+    fetch("http://localhost:8080/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+      credentials: "include", // Include cookies
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Handle login response
+        console.log("data ->", data);
+        if(data.success){
+          navigate('/');
+        }
+        else{
+          alert(data.message);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
   return (
@@ -24,19 +64,32 @@ const Login = () => {
           </h1>
         </div>
         <div className="login-signupto-text">
-            <h1>Sign up to start conversation</h1>
-            <h1>with your friends and family</h1>
+          <h1>
+            <b> Sign in </b> to start conversation
+          </h1>
+          <h1>with your friends and family</h1>
         </div>
-        <img src={background} className="login-of-background" alt="Background"></img>
+        <img
+          src={background}
+          className="login-of-background"
+          alt="Background"
+        ></img>
       </div>
 
       {/* Login form */}
       <div className="login-form-white-wallpaper-container">
         <div className="login-main-form-container">
-            <h1>Login</h1>
-          <form className='login-form'>
+          <h1>Login</h1>
+          <form className="login-form" onSubmit={handleSubmit}>
             <div className="login-form-group login-form-group-email">
-              <input type="email" id="email" name="email" placeholder="Email" required />
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email"
+                required
+                onChange={handleEmailChange}
+              />
             </div>
             <div className="login-form-group login-form-group-passwrod">
               <input
@@ -45,16 +98,26 @@ const Login = () => {
                 name="password"
                 placeholder="Password"
                 required
+                onChange={handlePasswordChange}
               />
-              <span className="toggle-password" onClick={togglePasswordVisibility}>
-                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              <span
+                className="toggle-password"
+                onClick={togglePasswordVisibility}
+              >
+                {showPassword ? <FaEye /> : <FaEyeSlash />}
               </span>
             </div>
-            <button type="submit" className='login-submit'>Login</button>
+            <button type="submit" className="login-submit">
+              Login
+            </button>
           </form>
-            <div className="login-google-button-container">
-                <button className="google-login-button">Login with Google</button>
-            </div>
+          <div>
+            {" "}
+            don't have account <Link to="/register">Register</Link>{" "}
+          </div>
+          <div className="login-google-button-container">
+            <button className="google-login-button">Login with Google</button>
+          </div>
         </div>
       </div>
     </div>
