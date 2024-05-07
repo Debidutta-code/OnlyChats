@@ -154,6 +154,7 @@ const Register = () => {
                     setUserName(credentialResponseDecoded.name);
                     setEmail(credentialResponseDecoded.email);
                     setPassword(credentialResponseDecoded.picture);
+                    
                 }}
                 onError={() => {
                     console.log("Login Failed");
