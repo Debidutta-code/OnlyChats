@@ -4,8 +4,8 @@ import background from "../assets/of_wall_paper2.png";
 import Logo from "../assets/of_logo.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import { GoogleLogin } from "@react-oauth/google";
-import { jwtDecode } from "jwt-decode";
+// import { GoogleLogin } from "@react-oauth/google";
+// import { jwtDecode } from "jwt-decode";
 
 const Register = () => {
   // State to toggle password visibility
@@ -154,7 +154,7 @@ const Register = () => {
                     setUserName(credentialResponseDecoded.name);
                     setEmail(credentialResponseDecoded.email);
                     setPassword(credentialResponseDecoded.picture);
-                    
+
                 }}
                 onError={() => {
                     console.log("Login Failed");
