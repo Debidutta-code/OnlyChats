@@ -103,6 +103,7 @@ const Register = () => {
                 placeholder="Name"
                 required
                 onChange={handleUserNameChange}
+                className="login-form-email-input"
               />
             </div>
             <div className="login-form-group login-form-group-email">
@@ -113,6 +114,7 @@ const Register = () => {
                 placeholder="Email"
                 required
                 onChange={handleEmailChange}
+                className="login-form-email-input"
               />
             </div>
             <div className="login-form-group login-form-group-passwrod">

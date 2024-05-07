@@ -97,6 +97,7 @@ const Login = () => {
                 placeholder="Email"
                 required
                 onChange={handleEmailChange}
+                className="login-form-email-input"
               />
             </div>
             <div className="login-form-group login-form-group-passwrod">

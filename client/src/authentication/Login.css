@@ -71,6 +71,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    
 }
 
 .login-main-form-container h1{
@@ -106,6 +107,8 @@
     border-radius: 10px;
     outline: none;
 }
+
+
 
 .login-form-group-passwrod{
     display: flex;
@@ -179,11 +182,18 @@
     width: 295px;
 }
 
+.login-form-email-input{
+    min-width: 265px !important;
+}
+
 @media (max-width: 768px) {
     .login-wallpaper-container{
         display: none;
     }
     .login-form-white-wallpaper-container{
         width: 100%;
+    }
+    .login-main-form-container{
+        justify-content: center;
     }
   }
