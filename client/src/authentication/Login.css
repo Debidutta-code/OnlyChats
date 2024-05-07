@@ -163,13 +163,16 @@
 .google-login-button-1{
     display: flex;
     justify-content: center;
+    margin: 20px;
+    border: 2px solid rgba(0, 200, 255, 0.462);
+    box-shadow: 0 0 10px rgba(0, 191, 255, 0.77);
+    transition: all 0.3s;
 }
 
-.google-login-button:hover{
+.google-login-button-1:hover{
     cursor: pointer;
-    box-shadow: 0 0 10px rgba(255, 17, 49, 0.377);
-    background-color: rgb(0, 95, 247);
-
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.538);    
+    transform: scale(1.02);
 }
 
 .login-form-group-email{

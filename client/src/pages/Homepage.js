@@ -14,7 +14,7 @@ const Homepage = () => {
         })
         .then((response) => {
             if (response.ok) {
-                setIsLoggedIn(true);
+                // setIsLoggedIn(true);
             } else {
                 navigate('/login'); // Redirect to login page if not logged in
             }

@@ -141,9 +141,13 @@ const Register = () => {
             have an account <Link to="/login">Login</Link>{" "}
           </div>
           <div className="login-google-button-container">
-            <button className="google-login-button">
+
+
+            {/* <button className="google-login-button">
               Register with Google
-            </button>
+            </button> */}
+
+
             {/* <div className="google-login-button-1">
                 <GoogleLogin
                 onSuccess={(credentialResponse) => {
