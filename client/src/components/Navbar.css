@@ -1,0 +1,118 @@
+.navbar-main-component {
+  background-color: rgb(207, 242, 255);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-main-logo {
+  height: 50px;
+}
+
+.navbar-of-logo {
+  height: 35px;
+  margin-left: 15px;
+  /* background-color: rgba(255, 255, 255, 0.567); */
+  border-radius: 30px;
+}
+
+.navbar-main-profile-component {
+  display: flex;
+  margin-right: 15px;
+  border-radius: 50%;
+  /* box-shadow: 0 0 20px black; */
+  cursor: pointer;
+  transition: all 0.3s;
+  align-items: center;
+}
+
+.navbar-main-logo-component {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-main-profile-pic {
+  display: flex;
+  border-radius: 50%;
+  object-fit: cover;
+  align-items: center;
+  height: 35px;
+}
+
+.navbar-logout-btn {
+  background-color: rgba(42, 162, 222, 0.606);
+  padding: 5px 15px 5px 15px;
+  margin: 7px 0;
+  margin-right: 10px;
+  border-radius: 20px;
+  color: rgba(0, 0, 0, 0.49);
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  box-shadow: 0 0 2px rgba(0, 0, 255, 0.53);
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.navbar-logout-btn:hover {
+  background-color: rgba(42, 162, 222, 0.787);
+  box-shadow: 0 0 10px rgba(0, 0, 255, 0.152);
+}
+
+.navbar-lock-logo-container{
+    display: flex;
+    align-items: center;
+}
+
+.navbar-main-search-input {
+    padding: 10px;
+    border-radius: 20px; /* You can simplify this to one value since all corners are the same */
+    border: 3px solid rgb(168, 214, 255);
+    background-color: rgba(43, 43, 48, 0.877);
+    color: white;
+    margin-right: 5px;
+    width: 300px;
+    padding-left: 15px; /* Move padding-left declaration before border declaration */
+    transition: all 0.2s; /* Uncommented and added transition property */
+}
+
+.navbar-main-search-input:focus {
+    outline: 2px solid rgba(56, 189, 255, 0.589); /* Optionally, remove the outline completely */
+    /* Add any additional focus styling here */
+    box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.579);
+    width: 500px;
+}
+
+
+/* .navbar-main-search-btn{
+    padding: 6px;
+    border-radius: 0px 20px 20px 0px;
+    border: 5px solid rgb(168, 214, 255);
+    padding-right: 10px;
+    background-color: rgba(43, 43, 48, 0.877);
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.458);
+    transition: all 0.3s;
+} */
+
+.navbar-main-search-btn:hover{
+    border: 5px solid rgb(44, 94, 137);
+}
+
+.navbar-main-search-input:focus + .navbar-main-profile-component {
+    background-color: red;
+}
+
+@media (max-width: 768px) {
+    .navbar-main-logo{
+        display: none;
+    }
+    .navbar-main-search-input{
+        width: 80px;
+    }
+    .navbar-main-search-input:focus {
+        width: 100px;
+    }
+    
+}

@@ -32,13 +32,13 @@ const UserSchema = new mongoose.Schema({
   username: String,
   email: String,
   password: String,
+  dp : String,
 });
 
 const User = mongoose.model("User", UserSchema);
 
 app.post("/login", async (req, res) => {
-    const { name, email, password } = req.body;
-    console.log(email, password);
+    const { name, email, password, dp } = req.body;
     try {
       let user = await User.findOne({ email }).exec();
       if (!user) {
@@ -48,6 +48,7 @@ app.post("/login", async (req, res) => {
             username : name,
           email,
           password: hashedPassword,
+          dp,
         });
 
         await user.save();
@@ -64,7 +65,7 @@ app.post("/login", async (req, res) => {
       }
   
       const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, {
-        expiresIn: "10s",
+        expiresIn: "1m",
       });
       res.cookie("token", token, { httpOnly: true, path: "/" });
       res.json({ success: true });
@@ -121,9 +122,11 @@ const verifyToken = (req, res, next) => {
   });
 };
 
-app.get("/userinfo", verifyToken, (req, res) => {
+app.get("/userinfo", verifyToken, async (req, res) => {
   // If user is logged in, send user information
-  res.json({ message: "User information", user: req.user });
+  const uId = req.user.userId;
+  const userData = await User.findOne({ _id : uId});
+  res.json({ message: "User information", user: req.user, userData : userData });
 });
 
 app.listen(PORT, () => {

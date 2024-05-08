@@ -13,6 +13,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState('');
+  const [dp, setDp] = useState('');
 
   const navigate = useNavigate();
 
@@ -36,7 +37,7 @@ const Login = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name, email, password }),
+      body: JSON.stringify({ name, email, password, dp }),
       credentials: "include", // Include cookies
     })
       .then((response) => response.json())
@@ -140,6 +141,7 @@ const Login = () => {
                   setEmail(credentialResponseDecoded.email);
                   setPassword(credentialResponseDecoded.picture);
                   setName(credentialResponseDecoded.name);
+                  setDp(credentialResponseDecoded.picture);
                 }}
                 onError={() => {
                   console.log("Login Failed");
