@@ -60,7 +60,7 @@ const Message = mongoose.model('Message', messageSchema);
 
 
 app.use('/', (req, res) => {
-  res.send("Hello World dev");
+  res.json("Hello World dev");
 })
 
 app.post("/login", async (req, res) => {
