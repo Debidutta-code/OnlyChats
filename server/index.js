@@ -59,7 +59,7 @@ const Chatroom = mongoose.model('Chatroom', chatroomSchema);
 const Message = mongoose.model('Message', messageSchema);
 
 
-app.use('/hello', (req, res) => {
+app.get('/hello', (req, res) => {
   res.json("Hello World dev");
 })
 
