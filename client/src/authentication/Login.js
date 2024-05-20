@@ -35,7 +35,7 @@ const Login = () => {
     e.preventDefault();
     if (email === "" || password === "" || name === "") return;
     console.log(email, password);
-    fetch("https://onlychats.vercel.app/login", {
+    fetch("http://localhost:8080/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -60,7 +60,7 @@ const Login = () => {
 
   const handleGoogleSignIn = () => {
     if (email && password && isGoogleSignIn) {
-      fetch("https://onlychats.vercel.app/login", {
+      fetch("http://localhost:8080/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

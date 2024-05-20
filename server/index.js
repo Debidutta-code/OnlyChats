@@ -13,18 +13,13 @@ const PORT = process.env.PORT || 8080;
 const MONGODB_URI = process.env.MONGODB_URI;
 
 const corsOptions = {
-  origin: "http://localhost:3000",
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  allowedHeaders: "Content-Type,Authorization",
-  credentials: true, // Allow cookies
+  origin: "http://localhost:3000", // Update with the origin of your client application
+  credentials: true, // Allow credentials (cookies)
 };
-
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(cookieParser());
-
-app.options('*', cors(corsOptions));
 
 main().catch((err) => console.log(err));
 
@@ -63,6 +58,11 @@ const User = mongoose.model('User', userSchema);
 const Chatroom = mongoose.model('Chatroom', chatroomSchema);
 const Message = mongoose.model('Message', messageSchema);
 
+
+app.get('helloworld', (req, res) => {
+  res.send("Hello World");
+})
+
 app.post("/login", async (req, res) => {
   const { name, email, password, dp } = req.body;
   try {
@@ -76,11 +76,10 @@ app.post("/login", async (req, res) => {
         password: hashedPassword,
         dp,
       });
-      
+
       await user.save();
     }
-    console.log("not user");
-    
+
     const passwordMatch = await bcrypt.compare(password, user.password);
 
     if (!passwordMatch) {
@@ -125,8 +124,6 @@ app.post("/register", async (req, res) => {
       email,
       password: hashedPassword, // Store the hashed password in the database
     });
-
-    // console.log(newUser);
 
     await newUser.save();
     res.json({ success: true, message: "User registered successfully" });

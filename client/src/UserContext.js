@@ -14,7 +14,7 @@ export const UserProvider = ({ children }) => {
     useEffect(() => {
         const checkLoggedIn = async () => {
             try {
-                const response = await fetch("http://localhost:8080/userinfo", {
+                const response = await fetch("https://onlychats.vercel.app/userinfo", {
                     method: "GET",
                     credentials: "include", // Include credentials such as cookies
                 });
