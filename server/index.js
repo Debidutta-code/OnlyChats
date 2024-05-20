@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 8080;
 const MONGODB_URI = process.env.MONGODB_URI;
 
 const corsOptions = {
-  origin: "https://onlychats.netlify.app", // Update with the origin of your client application
+  origin: "https://localhost:3000", // Update with the origin of your client application
   credentials: true, // Allow credentials (cookies)
 };
 
@@ -380,7 +380,7 @@ const server = app.listen(PORT, () => {
 
 const io = require('socket.io')(server, {
   cors: {
-    origin: "https://onlychats.netlify.app",
+    origin: "https://localhost:3000",
   },
   pingTimeout: 60000,
 });
