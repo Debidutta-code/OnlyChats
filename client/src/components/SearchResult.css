@@ -1,0 +1,146 @@
+.search-result-main-component {
+    position: fixed;
+    top: 55px; /* Position from the top of the viewport */
+    left: 52.5%; /* Position from the left of the viewport */
+    transform: translateX(-52.5%);
+    width: 90%; /* Adjust width for smaller screens */
+    max-width: 520px; /* Set a maximum width */
+    height: auto;
+    max-height: 300px; /* Adjust height as needed */
+    background-color: rgb(26, 25, 25);
+    border-radius: 20px;
+    padding: 20px;
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack children vertically */
+    overflow-y: auto; /* Enable vertical scrolling */
+    z-index: 10;
+
+    /* Animation */
+    animation-name: fadeIn;
+    animation-duration: 0.6s;
+}
+
+@keyframes fadeIn {
+    from {
+        width: 80%;
+        opacity: 0;
+    }
+    to {
+        width: 90%;
+        opacity: 1;
+    }
+}
+
+
+.search-result-user-card-list {
+    overflow-y: auto; /* Enable vertical scrolling for the card list */
+    width: 100%; /* Ensure full width */
+    border-radius: 10px;
+    scrollbar-width: none;
+}
+
+.search-result-main-component .search-result-user-card {
+    background-color: rgb(47, 44, 44);
+    padding: 10px;
+    display: flex;
+    flex-direction: row; /* Ensure horizontal layout */
+    margin-bottom: 10px; /* Adjust margin */
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.search-result-main-component .search-result-user-profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px; /* Adjust spacing */
+    object-fit: cover;
+}
+
+.search-result-main-component .search-result-user-profile-pic img {
+    width: 100%;
+    height: 100%;
+}
+
+.search-result-main-component .search-result-user-name-and-bio {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.search-result-main-component .search-result-user-name {
+    font-size: 1.2rem; /* Adjust font size */
+    margin-bottom: 3px; /* Adjust spacing */
+}
+
+.search-result-main-component .search-result-user-bio {
+    font-size: 0.9rem;
+    margin-bottom: 3px; /* Adjust spacing */
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: rgba(255, 255, 255, 0.588);
+}
+
+.search-result-main-component .search-result-user-gender {
+    font-size: 0.9rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+}
+
+.search-result-user-genter-component {
+    font-size: 25px; /* Adjust font size */
+    padding-top: 2px;
+    display: flex;
+    margin-left: auto; /* Move to the right side */
+    color: rgba(255, 255, 255, 0.822);
+}
+
+@media (max-width: 768px) {
+    .search-result-main-component {
+        width: 90%;
+        left: 50%;
+        top:45px;
+        transform: translateX(-50%);
+    }
+}
+
+
+.search-result-cancel-button{
+    background-color: #ff00005e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.search-result-cancel-button h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    padding: 10px 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.search-result-cancel-button span{
+    color: rgba(255, 255, 255, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    padding-left: 2px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.search-result-cancel-button:hover{
+    background-color: rgba(255, 0, 0, 0.239);
+}

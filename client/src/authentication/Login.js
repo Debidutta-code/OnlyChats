@@ -5,7 +5,7 @@ import Logo from "../assets/of_logo.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
-import { jwtDecode } from "jwt-decode";
+import { jwtDecode } from "jwt-decode"// Corrected import statement
 
 const Login = () => {
   // State to toggle password visibility
@@ -14,6 +14,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [name, setName] = useState('');
   const [dp, setDp] = useState('');
+  const [isGoogleSignIn, setIsGoogleSignIn] = useState(false);
 
   const navigate = useNavigate();
 
@@ -30,7 +31,9 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (email === "" || password === "" || name === "") return;
     console.log(email, password);
     fetch("http://localhost:8080/login", {
       method: "POST",
@@ -55,11 +58,34 @@ const Login = () => {
       });
   };
 
-  useEffect(() => {
-    // Call handleSubmit after setting email and password
-    if (email && password) {
-      handleSubmit();
+  const handleGoogleSignIn = () => {
+    if (email && password && isGoogleSignIn) {
+      fetch("http://localhost:8080/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, password, dp }),
+        credentials: "include", // Include cookies
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          // Handle login response
+          console.log("data ->", data);
+          if (data.success) {
+            navigate("/");
+          } else {
+            alert(data.message);
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
     }
+  };
+
+  useEffect(() => {
+    handleGoogleSignIn();
   }, [email, password]);
 
   return (
@@ -126,22 +152,18 @@ const Login = () => {
             don't have account <Link to="/register">Register</Link>{" "}
           </div>
           <div className="login-google-button-container">
-            
-            
-            {/* <button className="google-login-button">Login with Google</button> */}
-    
-
             <div className="google-login-button-1">
               <GoogleLogin
                 onSuccess={(credentialResponse) => {
                   const credentialResponseDecoded = jwtDecode(
                     credentialResponse.credential
                   );
-                  console.log("Login Cred - ", credentialResponseDecoded.picture);
+                  console.log("Login Cred - ", credentialResponseDecoded);
                   setEmail(credentialResponseDecoded.email);
                   setPassword(credentialResponseDecoded.picture);
                   setName(credentialResponseDecoded.name);
                   setDp(credentialResponseDecoded.picture);
+                  setIsGoogleSignIn(true);
                 }}
                 onError={() => {
                   console.log("Login Failed");

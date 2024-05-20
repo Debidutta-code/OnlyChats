@@ -42,6 +42,10 @@
   .loading-heading2 {
     color: rgb(0, 139, 206);
   }
+
+  .loading-heading3{
+    color: rgba(255, 255, 255, 0.791);
+  }
   
   .loading-logo {
     width: 80px;

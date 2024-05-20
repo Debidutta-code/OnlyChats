@@ -16,7 +16,6 @@ const Loading = () => {
           <span className="loading-heading2">Chats</span>{" "}
         </h1>
       </div>
-      {/* Apply the calculated width */}
       <BarLoader color="#008BCA" height={1} speedMultiplier={1} width={barLoaderWidth} />
     </div>
   );

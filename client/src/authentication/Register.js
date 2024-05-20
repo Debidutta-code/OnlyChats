@@ -34,6 +34,7 @@ const Register = () => {
 
   const handleSubmit = () => {
     console.log("This is dev", username, email, password);
+    if(username === "", email ==="", password ==="")return;
     fetch("http://localhost:8080/register", {
       method: "POST",
       headers: {
@@ -58,13 +59,6 @@ const Register = () => {
         console.error("Error:", error);
       });
   };
-
-  useEffect(() => {
-    // Call handleSubmit after setting email and password
-    if (username && email && password) {
-      handleSubmit();
-    }
-  }, [username, email, password]);
 
   return (
     <div className="login-main-container">

@@ -1,0 +1,104 @@
+.homepage-messages-container-main-when-no-ones-chat-open{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background: url('../assets/whatsapp_bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: left;
+    overflow: hidden;
+    opacity: 1;
+}
+
+.homepage-messages-container-when-no-ones-chat-open-image{
+    width: 300px;
+    object-fit: cover;
+}
+
+.homepage-messages-when-no-ones-chat-open-image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.homepage-messages-container-when-no-ones-chat-open-of-logo{
+    width: 60px;
+    object-fit: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.homepage-messages-when-no-ones-chat-open-of-logo{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.designer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 20px;
+    margin-top: 70px;
+    color: rgba(255, 255, 255, 0.553);
+}
+
+.designer a{
+    color: rgba(255, 255, 255, 0.791);
+    text-decoration: none;
+    text-decoration: underline;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.message-options-menu {
+    position: absolute;
+    top: 75px;
+    right: 30px;
+    width: 150px;
+    background-color: rgb(54, 72, 80);
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    padding: 5px;
+    margin: 10px 0px;
+    animation: fadeIn 0.3s ease-in-out forwards; /* Add animation */
+    opacity: 0; /* Start with opacity 0 */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.message-options {
+    display: flex;
+    flex-direction: column;
+}
+
+.message-options button {
+    padding: 15px;
+    border: none;
+    background-color: transparent;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: rgb(243, 240, 240);
+    border-radius: 10px;
+    text-align: end;
+}
+
+.message-options button:hover {
+    background-color: #372727;
+}
