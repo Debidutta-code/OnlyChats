@@ -65,6 +65,7 @@ app.use('/', (req, res) => {
 
 app.post("/login", async (req, res) => {
   const { name, email, password, dp } = req.body;
+  console.log(req.body);
   try {
     let user = await User.findOne({ email }).exec();
     if (!user) {
