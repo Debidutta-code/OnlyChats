@@ -95,7 +95,7 @@ app.post("/login", async (req, res) => {
     }
 
     const token = jwt.sign({ userId: user._id }, JWT_SECRET_KEY, {
-      expiresIn: "1m",
+      expiresIn: "1h",
     });
     res.cookie('token', token, {
       httpOnly: true,
