@@ -10,7 +10,7 @@ import { HiUserGroup } from "react-icons/hi2";
 import JoinGroup from './JoinGroup';
 import io from 'socket.io-client';
 
-const ENDPOINT = "http://localhost:8080";
+const ENDPOINT = "https://onlychats.vercel.app";
 var socket, selectedChatCompare;
 
 const ChatsList = ({ setIsProfileClicked, setIsAnyOnesChatOpen, isNewChatCreated, contactClicked, setContactClicked, setContactFullDetails, setAllMessages, allMessages, setChatRoomFullDetails }) => {
