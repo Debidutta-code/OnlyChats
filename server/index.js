@@ -12,12 +12,21 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 const MONGODB_URI = process.env.MONGODB_URI;
 
+const allowedOrigins = ['http://localhost:3000/', 'http://your-other-client.com'];
+
 const corsOptions = {
-  origin: "http://localhost:3000", // Update with the origin of your client application
-  credentials: true, // Allow credentials (cookies)
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, origin);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
 };
 
 app.use(cors(corsOptions));
+
 app.use(bodyParser.json());
 app.use(cookieParser());
 
