@@ -258,7 +258,7 @@ const MessagesComponent = ({ setIsProfileClicked, isAnyOnesChatOpen, contactClic
 
     const handleDeleteChat = async () => {
         try {
-            const response = await fetch(`http://localhost:8080/deletechat`, {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/deletechat`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'

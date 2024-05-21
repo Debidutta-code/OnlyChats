@@ -10,23 +10,14 @@ const bcrypt = require("bcrypt");
 const app = express();
 
 const PORT = process.env.PORT || 8080;
-const MONGODB_URI = process.env.MONGODB_URI;
-
-const allowedOrigins = ['http://localhost:3000/', 'http://your-other-client.com'];
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://test1234:test1234@cluster0.2mh3n37.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 const corsOptions = {
-  origin: (origin, callback) => {
-    if (allowedOrigins.includes(origin) || !origin) {
-      callback(null, origin);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
+  origin: "http://localhost:3000", // Update with the origin of your client application
+  credentials: true, // Allow credentials (cookies)
 };
 
 app.use(cors(corsOptions));
-
 app.use(bodyParser.json());
 app.use(cookieParser());
 
@@ -77,7 +68,6 @@ app.get('/hello', (req, res) => {
 
 app.post("/login", async (req, res) => {
   const { name, email, password, dp } = req.body;
-  console.log(req.body);
   try {
     let user = await User.findOne({ email }).exec();
     if (!user) {

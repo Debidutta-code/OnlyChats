@@ -11,7 +11,7 @@ const JoinGroup = ({ setShowJoinRoom }) => {
     useEffect(() => {
         const fetchChatRooms = async () => {
             try {
-                const response = await fetch("http://localhost:8080/getallchatrooms", {
+                const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/getallchatrooms`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -36,7 +36,7 @@ const JoinGroup = ({ setShowJoinRoom }) => {
 
     const handleJoinGroup = async (chatroomId) => {
         try {
-            const response = await fetch("http://localhost:8080/joinnewchatroom", {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/joinnewchatroom`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

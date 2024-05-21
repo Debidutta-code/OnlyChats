@@ -65,7 +65,7 @@ const CreateNewGroup = ({ setShowCreateNewRoom }) => {
     useEffect(() => {
         const fetchAllUsers = async () => {
             try {
-                const response = await fetch("http://localhost:8080/getallusers");
+                const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/getallusers`);
                 if (!response.ok) {
                     throw new Error("Something went wrong");
                 }
@@ -140,7 +140,7 @@ const CreateNewGroup = ({ setShowCreateNewRoom }) => {
         };
 
         try {
-            const response = await fetch("http://localhost:8080/createnewgroupchat", {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/createnewgroupchat`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -35,7 +35,7 @@ const Register = () => {
   const handleSubmit = () => {
     console.log("This is dev", username, email, password);
     if(username === "", email ==="", password ==="")return;
-    fetch("http://localhost:8080/register", {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

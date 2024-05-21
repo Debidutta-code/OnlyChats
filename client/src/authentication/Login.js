@@ -32,15 +32,16 @@ const Login = () => {
   };
 
   const handleSubmit = (e) => {
+    console.log("hello world dev");
     e.preventDefault();
-    if (email === "" || password === "" || name === "") return;
+    if (email === "" || password === "") return;
     console.log(email, password);
-    fetch("https://onlychats.vercel.app/login", {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name, email, password, dp }),
+      body: JSON.stringify({ email, password }),
       credentials: "include", // Include cookies
     })
       .then((response) => response.json())
@@ -60,7 +61,7 @@ const Login = () => {
 
   const handleGoogleSignIn = () => {
     if (email && password && isGoogleSignIn) {
-      fetch("https://onlychats.vercel.app/login", {
+      fetch(`${process.env.REACT_APP_BACKEND_URL}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -11,7 +11,7 @@ const SearchResult = ({ setIsSearchFocused, searchedName, setIsNewChatCreated })
     useEffect(() => {
         const fetchAllUsers = async () => {
             try {
-                const response = await fetch('http://localhost:8080/getallusers');
+                const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/getallusers`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch users');
                 }
@@ -31,7 +31,7 @@ const SearchResult = ({ setIsSearchFocused, searchedName, setIsNewChatCreated })
         console.log(_id);
 
         try {
-            const response = await fetch('http://localhost:8080/createnewchat', {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/createnewchat`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

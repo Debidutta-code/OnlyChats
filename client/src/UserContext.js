@@ -10,11 +10,11 @@ export const UserProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(true);
     const [dp, setDp] = useState("");
     const [notification, setNotification] = useState([]);
-    
+
     useEffect(() => {
         const checkLoggedIn = async () => {
             try {
-                const response = await fetch("http://localhost:8080/userinfo", {
+                const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/userinfo`, {
                     method: "GET",
                     credentials: "include", // Include credentials such as cookies
                 });

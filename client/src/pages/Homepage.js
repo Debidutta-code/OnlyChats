@@ -38,7 +38,8 @@ const Homepage = () => {
 
     return (
         <div className="homepage-main-component">
-            <Navbar dp={dp.toString()} setIsNewChatCreated={setIsNewChatCreated} />
+           <Navbar dp={dp ? dp.toString() : ''} setIsNewChatCreated={setIsNewChatCreated} />
+
 
             <div className="homepage-main-chat-container">
                 <div className="homepage-main-chat-and-message-container">

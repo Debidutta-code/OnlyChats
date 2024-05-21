@@ -65,7 +65,7 @@ const ChatsList = ({ setIsProfileClicked, setIsAnyOnesChatOpen, isNewChatCreated
         const fetchContacts = async () => {
             try {
                 setLoading(true);
-                const response = await fetch('http://localhost:8080/getallcontactlist', {
+                const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/getallcontactlist`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -94,7 +94,7 @@ const ChatsList = ({ setIsProfileClicked, setIsAnyOnesChatOpen, isNewChatCreated
     const handleProfileButtonClicked = async (contact) => {
         try {
             const contactId = contact._id;
-            const response = await fetch(`http://localhost:8080/gettheprofiledetails/${contactId}`, {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/gettheprofiledetails/${contactId}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
@@ -246,7 +246,7 @@ const ChatsList = ({ setIsProfileClicked, setIsAnyOnesChatOpen, isNewChatCreated
                                 </div>
                             ) : (
                                 // Iterate through participants and display username if not the current user
-                                <div className="homepage-chatsingle-name-container" key={chat.chatName}>
+                                <div className="homepage-chatsingle-name-container" key={chat._id}>
                                     {chat.participants.map((participant, idz) => (
                                         participant._id !== userId && (
                                             <>
