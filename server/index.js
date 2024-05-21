@@ -14,7 +14,7 @@ const MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://test1234:test1234@
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY || "hellodevthisisme"
 
 const corsOptions = {
-  origin: "https://onlychats.netlify.app", // Update with the origin of your client application
+  origin: "https://only-chats-client.vercel.app", // Update with the origin of your client application
   credentials: true, // Allow credentials (cookies)
 };
 
@@ -392,7 +392,7 @@ const server = app.listen(PORT, () => {
 
 const io = require('socket.io')(server, {
   cors: {
-    origin: "https://onlychats.netlify.app",
+    origin: "https://only-chats-client.vercel.app",
   },
   pingTimeout: 60000,
 });
