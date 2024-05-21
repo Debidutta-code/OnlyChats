@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 8080;
 const MONGODB_URI = process.env.MONGODB_URI;
 
 const corsOptions = {
-  origin: "*", // Update with the origin of your client application
+  origin: "http://localhost:3000", // Update with the origin of your client application
   credentials: true, // Allow credentials (cookies)
 };
 
