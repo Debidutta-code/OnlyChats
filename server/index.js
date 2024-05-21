@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 8080;
 const MONGODB_URI = process.env.MONGODB_URI;
 
 const corsOptions = {
-  origin: "http://localhost:3000", // Update with the origin of your client application
+  origin: "*", // Update with the origin of your client application
   credentials: true, // Allow credentials (cookies)
 };
 
@@ -58,6 +58,9 @@ const User = mongoose.model('User', userSchema);
 const Chatroom = mongoose.model('Chatroom', chatroomSchema);
 const Message = mongoose.model('Message', messageSchema);
 
+app.get('/', (req, res) => {
+  res.json("App Launched");
+})
 
 app.get('/hello', (req, res) => {
   res.json("Hello World dev");
