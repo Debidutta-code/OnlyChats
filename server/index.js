@@ -11,6 +11,7 @@ const app = express();
 
 const PORT = process.env.PORT || 8080;
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://test1234:test1234@cluster0.2mh3n37.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY || "hellodevthisisme"
 
 const corsOptions = {
   origin: "https://onlychats.netlify.app", // Update with the origin of your client application
