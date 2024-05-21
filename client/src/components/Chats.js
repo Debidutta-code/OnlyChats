@@ -13,6 +13,8 @@ import io from 'socket.io-client';
 const ENDPOINT = "https://only-chats-one.vercel.app";
 var socket, selectedChatCompare;
 
+
+
 const ChatsList = ({ setIsProfileClicked, setIsAnyOnesChatOpen, isNewChatCreated, contactClicked, setContactClicked, setContactFullDetails, setAllMessages, allMessages, setChatRoomFullDetails }) => {
     const { userId, notification, setNotification } = useUser();
     const [chats, setChats] = useState([]);

@@ -18,6 +18,8 @@ const corsOptions = {
   credentials: true, // Allow credentials (cookies)
 };
 
+
+
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(cookieParser());
