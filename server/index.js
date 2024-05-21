@@ -99,7 +99,7 @@ app.post("/login", async (req, res) => {
     });
     res.cookie('token', token, {
       httpOnly: true,
-      secure:'production', // true in production, false in development
+      secure: 'production', // true in production, false in development
       sameSite: 'Strict', // or 'Lax' or 'None' based on your requirements
       maxAge: 3600000, // 1 hour in milliseconds
       path: "/",
