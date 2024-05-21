@@ -97,7 +97,13 @@ app.post("/login", async (req, res) => {
     const token = jwt.sign({ userId: user._id }, JWT_SECRET_KEY, {
       expiresIn: "1m",
     });
-    res.cookie("token", token, { httpOnly: true, path: "/" });
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production', // true in production, false in development
+      sameSite: 'Strict', // or 'Lax' or 'None' based on your requirements
+      maxAge: 3600000, // 1 hour in milliseconds
+      path: "/",
+    });
     res.json({ success: true });
   } catch (error) {
     console.error(error);
