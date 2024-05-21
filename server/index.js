@@ -94,7 +94,7 @@ app.post("/login", async (req, res) => {
         .json({ success: false, message: "Invalid email or password."});
     }
 
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, {
+    const token = jwt.sign({ userId: user._id }, JWT_SECRET_KEY, {
       expiresIn: "1m",
     });
     res.cookie("token", token, { httpOnly: true, path: "/" });
@@ -142,7 +142,7 @@ const verifyToken = (req, res, next) => {
   if (!token) {
     return res.status(401).json({ message: "Unauthorized" });
   }
-  jwt.verify(token, process.env.JWT_SECRET_KEY, (err, decoded) => {
+  jwt.verify(token, JWT_SECRET_KEY, (err, decoded) => {
     if (err) {
       return res.status(401).json({ message: "Unauthorized" });
     }
