@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 8080;
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://test1234:test1234@cluster0.2mh3n37.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 const corsOptions = {
-  origin: "http://localhost:3000", // Update with the origin of your client application
+  origin: "https://onlychats.netlify.app", // Update with the origin of your client application
   credentials: true, // Allow credentials (cookies)
 };
 
