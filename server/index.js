@@ -68,7 +68,6 @@ app.get('/hello', (req, res) => {
 
 app.post("/login", async (req, res) => {
   const { name, email, password, dp } = req.body;
-  console.log(req.body);
   try {
     let user = await User.findOne({ email }).exec();
     if (!user) {
@@ -91,7 +90,7 @@ app.post("/login", async (req, res) => {
       console.log("password mismatch");
       return res
         .status(400)
-        .json({ success: false, message: "Invalid email or password." });
+        .json({ success: false, message: "Invalid email or password."});
     }
 
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, {
@@ -101,7 +100,7 @@ app.post("/login", async (req, res) => {
     res.json({ success: true });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ message: "Internal server error" , body : req.body });
   }
 });
 
