@@ -28,7 +28,7 @@ const MessageOptionsMenu = ({ handleLeaveMessage, handleDeleteChat }) => {
     );
 };
 
-const ENDPOINT = "https://onlychats.vercel.app";
+const ENDPOINT = "https://only-chats-one.vercel.app";
 var socket, selectedChatCompare;
 
 const MessagesComponent = ({ setIsProfileClicked, isAnyOnesChatOpen, contactClicked, userId, setContactFullDetails, setIsAnyOnesChatOpen, allMessages, setAllMessages, setChatRoomFullDetails }) => {
