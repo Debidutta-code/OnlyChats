@@ -58,7 +58,7 @@ const MessagesComponent = ({ setIsProfileClicked, isAnyOnesChatOpen, contactClic
         return () => {
             socket.disconnect();
         };
-    }, [userId]);
+    }, []);
 
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView();
