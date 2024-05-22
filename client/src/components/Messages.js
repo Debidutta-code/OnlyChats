@@ -28,7 +28,7 @@ const MessageOptionsMenu = ({ handleLeaveMessage, handleDeleteChat }) => {
     );
 };
 
-const ENDPOINT = "http://localhost:8080";
+const ENDPOINT = "https://onlychats-0acg.onrender.com";
 var socket, selectedChatCompare;
 
 const MessagesComponent = ({ setIsProfileClicked, isAnyOnesChatOpen, contactClicked, userId, setContactFullDetails, setIsAnyOnesChatOpen, allMessages, setAllMessages, setChatRoomFullDetails }) => {
