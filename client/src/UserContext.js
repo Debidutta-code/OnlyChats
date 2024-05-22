@@ -36,7 +36,7 @@ export const UserProvider = ({ children }) => {
         };
 
         checkLoggedIn();
-    }, []);
+    }, [isLoggedIn]);
 
   return (
     <UserContext.Provider
