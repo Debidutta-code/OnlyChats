@@ -25,23 +25,12 @@ const ChatsList = ({ setIsProfileClicked, setIsAnyOnesChatOpen, isNewChatCreated
     const [socketConnected, setSocketConnected] = useState(false);
 
     useEffect(() => {
-        const socket = io(ENDPOINT, {
-            transports: ['websocket'],
-            withCredentials: true,
-        });
+        socket = io(ENDPOINT);
 
-        // Emit setup event with userId
         socket.emit("setup", userId);
 
-        // Set up event listeners
-        socket.on('connected', () => setSocketConnected(true));
+        socket.on('connected', () => setSocketConnected(true));  // Corrected event name
 
-        // Handle connection errors
-        socket.on('connect_error', (err) => {
-            console.error(`Connection Error: ${err.message}`);
-        });
-
-        // Clean up on component unmount or userId change
         return () => {
             socket.disconnect();
         };

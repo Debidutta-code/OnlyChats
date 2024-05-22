@@ -396,9 +396,7 @@ app.post('/joinnewchatroom', async (req, res) => {
 
 const io = require('socket.io')(server, {
   cors: {
-    origin: ["https://onlychats.netlify.app", "https://onlychats.vercel.app"], // Add all allowed origins
-    methods: ["GET", "POST"],
-    credentials: true
+    origin: ["https://onlychats.netlify.app", "https://onlychats.vercel.app"],
   },
   pingTimeout: 60000,
 });
