@@ -35,7 +35,7 @@ const allowCors = (fn) => async (req, res) => {
   return await fn(req, res);
 };
 
-
+app.use(allowCors);
 app.use(bodyParser.json());
 app.use(cookieParser());
 
