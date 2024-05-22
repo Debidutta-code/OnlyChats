@@ -12,15 +12,21 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://test1234:test1234@cluster0.2mh3n37.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY || "hellodevthisisme"
+const allowedOrigins = ['https://onlychats.netlify.app'];
 
 const corsOptions = {
-  origin: "*", 
-  credentials: true, // Allow credentials (cookies)
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
 };
 
-
-
 app.use(cors(corsOptions));
+
 app.use(bodyParser.json());
 app.use(cookieParser());
 
@@ -394,7 +400,7 @@ const server = app.listen(PORT, () => {
 
 const io = require('socket.io')(server, {
   cors: {
-    origin: "*",
+    origin: "https://onlychats.netlify.app",
   },
   pingTimeout: 60000,
 });
