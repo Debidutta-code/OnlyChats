@@ -400,7 +400,7 @@ const server = app.listen(PORT, () => {
 
 const io = require('socket.io')(server, {
   cors: {
-    origin: "https://onlychats.netlify.app",
+    origin: ["https://onlychats.netlify.app", "https://onlychats.vercel.app"],
   },
   pingTimeout: 60000,
 });
