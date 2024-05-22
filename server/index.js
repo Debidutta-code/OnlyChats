@@ -394,14 +394,11 @@ app.post('/joinnewchatroom', async (req, res) => {
 
 
 
-const server = app.listen(PORT, () => {
-  console.log(`Server is running on ${PORT}`);
-});
-
 const io = require('socket.io')(server, {
   cors: {
-    origin: ["https://onlychats.netlify.app", "https://onlychats.vercel.app"], // Add other allowed origins
-    methods: ["GET", "POST"]
+    origin: ["https://onlychats.netlify.app", "https://onlychats.vercel.app"], // Add all allowed origins
+    methods: ["GET", "POST"],
+    credentials: true
   },
   pingTimeout: 60000,
 });
@@ -411,34 +408,30 @@ io.on("connection", (socket) => {
 
   socket.on("setup", (userId) => {
     socket.join(userId);
-    // console.log(userId);
     socket.emit("connected");
   });
 
   socket.on("join chat", (room) => {
     socket.join(room);
     console.log("user joined room - ", room);
-  })
+  });
 
   socket.on('typing', (room) => socket.in(room).emit("typing"));
   socket.on('stop typing', (room) => socket.in(room).emit("stop typing"));
 
   socket.on("new message", (newMessageReceived) => {
-    var chat = newMessageReceived.chatroom;
-    // console.log(chat);
+    const chat = newMessageReceived.chatroom;
     if(!chat.participants) return console.log("chat.user not define");
 
     chat.participants.forEach(user => {
       if(user === newMessageReceived.sender._id){
         return;
-      };
-      // console.log("new message", newMessageReceived);
+      }
       socket.in(user).emit("message received", newMessageReceived);
-    })
-  })
+    });
+  });
 
-  socket.off('setup', (userId) => {
+  socket.on('disconnect', () => {
     console.log("User Disconnected");
-    socket.leave(userId);
-  })
+  });
 });

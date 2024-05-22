@@ -47,18 +47,25 @@ const MessagesComponent = ({ setIsProfileClicked, isAnyOnesChatOpen, contactClic
     const {notification, setNotification} = useUser();
     
     useEffect(() => {
-        socket = io(ENDPOINT);
+        const socket = io(ENDPOINT, {
+            transports: ['websocket'],
+            withCredentials: true,
+        });
+
+        socket.on('connect_error', (err) => {
+            console.error(`Connection Error: ${err.message}`);
+        });
 
         socket.emit("setup", userId);
 
-        socket.on('connected', () => setSocketConnected(true));  // Corrected event name
+        socket.on('connected', () => setSocketConnected(true));
         socket.on('typing', () => setIsTyping(true));
         socket.on('stop typing', () => setIsTyping(false));
 
         return () => {
             socket.disconnect();
         };
-    }, []);
+    }, [userId]);
 
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView();
