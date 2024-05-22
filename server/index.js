@@ -14,7 +14,7 @@ const MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://test1234:test1234@
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY || "hellodevthisisme"
 
 const corsOptions = {
-  origin: "https://only-chats-client.vercel.app", // Update with the origin of your client application
+  origin: "*", 
   credentials: true, // Allow credentials (cookies)
 };
 
@@ -394,7 +394,7 @@ const server = app.listen(PORT, () => {
 
 const io = require('socket.io')(server, {
   cors: {
-    origin: "https://only-chats-client.vercel.app",
+    origin: "*",
   },
   pingTimeout: 60000,
 });
