@@ -163,7 +163,7 @@ const MessagesComponent = ({ setIsProfileClicked, isAnyOnesChatOpen, contactClic
         }
 
         else {
-            const response = await fetch(`http://localhost:8080/sendmessage`, {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/sendmessage`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -199,7 +199,7 @@ const MessagesComponent = ({ setIsProfileClicked, isAnyOnesChatOpen, contactClic
         try {
 
             const contactId = id;
-            const response = await fetch(`http://localhost:8080/gettheprofiledetails/${contactId}`, {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/gettheprofiledetails/${contactId}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
