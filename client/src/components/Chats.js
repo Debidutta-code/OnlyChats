@@ -35,8 +35,6 @@ const ChatsList = ({ setIsProfileClicked, setIsAnyOnesChatOpen, isNewChatCreated
 
         // Set up event listeners
         socket.on('connected', () => setSocketConnected(true));
-        socket.on('typing', () => setIsTyping(true));
-        socket.on('stop typing', () => setIsTyping(false));
 
         // Handle connection errors
         socket.on('connect_error', (err) => {
