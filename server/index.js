@@ -12,20 +12,29 @@ const PORT = process.env.PORT || 8080;
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://test1234:test1234@cluster0.2mh3n37.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY || "hellodevthisisme";
 
-const allowCors = fn => async (req, res) => {
+const allowCors = (fn) => async (req, res) => {
+  const allowedOrigins = ['https://onlychats.netlify.app', 'https://onlychats.vercel.app'];
+  const origin = req.headers.origin;
+
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+
   res.setHeader('Access-Control-Allow-Credentials', true);
-  res.setHeader('Access-Control-Allow-Origin', '*'); // Or specify specific origin
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.setHeader(
     'Access-Control-Allow-Headers',
-    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
   );
+
   if (req.method === 'OPTIONS') {
     res.status(200).end();
     return;
   }
+
   return await fn(req, res);
 };
+
 
 app.use(bodyParser.json());
 app.use(cookieParser());
