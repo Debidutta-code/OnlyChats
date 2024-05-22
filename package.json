@@ -1,0 +1,19 @@
+{
+  "name": "onlychats",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install-client": "cd client && npm install",
+    "install-server": "cd server && npm install",
+    "install-all": "npm run install-client && npm run install-server",
+    "build-client": "cd client && npm run build",
+    "start-server": "cd server && node index.js",
+    "build": "npm run install-all && npm run build-client",
+    "start": "npm run start-server",
+    "build-and-start": "npm run build && npm run start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

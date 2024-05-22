@@ -6,13 +6,14 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const path = require("path");
 
 const app = express();
 
 const PORT = process.env.PORT || 8080;
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://test1234:test1234@cluster0.2mh3n37.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY || "hellodevthisisme"
-const allowedOrigins = ['http://localhost:3000'];
+const allowedOrigins = ['http://localhost:3000', 'http://localhost:8080'];
 
 const corsOptions = {
   origin: function (origin, callback) {
@@ -66,10 +67,6 @@ const messageSchema = new mongoose.Schema({
 const User = mongoose.model('User', userSchema);
 const Chatroom = mongoose.model('Chatroom', chatroomSchema);
 const Message = mongoose.model('Message', messageSchema);
-
-app.get('/', (req, res) => {
-  res.json("App Launched");
-})
 
 app.get('/hello', (req, res) => {
   res.json("Hello World dev");
@@ -392,7 +389,22 @@ app.post('/joinnewchatroom', async (req, res) => {
 });
 
 
+const __dirname1 = path.resolve();
 
+if (process.env.NODE_ENV === 'production') {
+  // Serve static files from the React app
+  app.use(express.static(path.join(__dirname1, '../client/build')));
+
+  // Handle any requests that don't match the above with the React app
+  app.get('*', (req, res) => {
+    console.log("Serving the React app");
+    res.sendFile(path.resolve(__dirname1, "client", "build", "index.html"));
+  });
+} else {
+  app.get('/', (req, res) => {
+    res.json({ message: "App Launched in Development Mode" });
+  });
+}
 
 const server = app.listen(PORT, () => {
   console.log(`Server is running on ${PORT}`);
