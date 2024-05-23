@@ -36,6 +36,7 @@ const ChatsList = ({ setIsProfileClicked, setIsAnyOnesChatOpen, isNewChatCreated
 
     useEffect(() => {
         socket.on('message received', (newMessageReceived) => {
+            console.log(newMessageReceived);
             if (!selectedChatCompare || selectedChatCompare._id !== newMessageReceived.chatroom._id) {
                 // give notification
                 if (!notification.includes(newMessageReceived)) {

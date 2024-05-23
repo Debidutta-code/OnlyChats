@@ -439,9 +439,9 @@ io.on("connection", (socket) => {
     if(!chat.participants) return console.log("chat.user not define");
 
     chat.participants.forEach(user => {
-      // if(user === newMessageReceived.sender._id){
-      //   return;
-      // };
+      if(user === newMessageReceived.sender._id){
+        return;
+      };
       // console.log("new message", newMessageReceived);
       socket.in(user).emit("message received", newMessageReceived);
     })
