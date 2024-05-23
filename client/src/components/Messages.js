@@ -122,7 +122,7 @@ const MessagesComponent = ({ setIsProfileClicked, isAnyOnesChatOpen, contactClic
                 }
             }
             else{
-                setAllMessages([...allMessages, newMessageReceived]);
+                setAllMessages([...allMessages, ...newMessageReceived]);
             }
         } )
     });
