@@ -54,10 +54,6 @@ const MessagesComponent = ({ setIsProfileClicked, isAnyOnesChatOpen, contactClic
         socket.on('connected', () => setSocketConnected(true));  // Corrected event name
         socket.on('typing', () => setIsTyping(true));
         socket.on('stop typing', () => setIsTyping(false));
-
-        return () => {
-            socket.disconnect();
-        };
     }, []);
 
     useEffect(() => {

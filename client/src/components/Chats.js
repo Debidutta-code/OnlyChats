@@ -30,10 +30,6 @@ const ChatsList = ({ setIsProfileClicked, setIsAnyOnesChatOpen, isNewChatCreated
         socket.emit("setup", userId);
 
         socket.on('connected', () => setSocketConnected(true));  // Corrected event name
-
-        return () => {
-            socket.disconnect();
-        };
     }, [userId]);
 
     // console.log(notification, "-------------------------");
