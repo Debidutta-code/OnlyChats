@@ -113,12 +113,11 @@ const MessagesComponent = ({ setIsProfileClicked, isAnyOnesChatOpen, contactClic
                     return;
                 }
                 else if(!notification.includes(newMessageReceived)){
-                    setNotification([newMessageReceived, ...notification]);
                     setAllMessages([...allMessages, ...newMessageReceived]);
-
                 }
             }
             else{
+                console.log(newMessageReceived);
                 setAllMessages([...allMessages, ...newMessageReceived]);
             }
         } )
