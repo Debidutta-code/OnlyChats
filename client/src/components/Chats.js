@@ -44,7 +44,7 @@ const ChatsList = ({ setIsProfileClicked, setIsAnyOnesChatOpen, isNewChatCreated
                     if(newMessageReceived.chatroom._id === contactClicked._id)return;
                     setNotification([newMessageReceived, ...notification]);
                     // setRefreshChats((prev) => !prev);
-                    setAllMessages([...allMessages, newMessageReceived])
+                    // setAllMessages([...allMessages, newMessageReceived])
                     // console.log(allMessages);
                 }
             }
