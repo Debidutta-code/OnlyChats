@@ -47,7 +47,7 @@ const ChatsList = ({ setIsProfileClicked, setIsAnyOnesChatOpen, isNewChatCreated
                 }
             }
             else {
-                setAllMessages([...allMessages, newMessageReceived]);
+                // setAllMessages([...allMessages, newMessageReceived]);
             }
         })
     });
