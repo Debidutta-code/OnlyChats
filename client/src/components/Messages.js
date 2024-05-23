@@ -117,7 +117,7 @@ const MessagesComponent = ({ setIsProfileClicked, isAnyOnesChatOpen, contactClic
                 }
                 else if(!notification.includes(newMessageReceived)){
                     setNotification([newMessageReceived, ...notification]);
-                    setAllMessages([...allMessages, newMessageReceived]);
+                    setAllMessages([...allMessages, ...newMessageReceived]);
 
                 }
             }
