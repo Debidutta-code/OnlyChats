@@ -28,7 +28,7 @@ const MessageOptionsMenu = ({ handleLeaveMessage, handleDeleteChat }) => {
     );
 };
 
-const ENDPOINT = "https://onlychats-0acg.onrender.com";
+const ENDPOINT = process.env.REACT_APP_BACKEND_URL;
 var socket, selectedChatCompare;
 
 const MessagesComponent = ({ setIsProfileClicked, isAnyOnesChatOpen, contactClicked, userId, setContactFullDetails, setIsAnyOnesChatOpen, allMessages, setAllMessages, setChatRoomFullDetails }) => {

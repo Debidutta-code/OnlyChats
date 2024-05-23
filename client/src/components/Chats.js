@@ -10,7 +10,7 @@ import { HiUserGroup } from "react-icons/hi2";
 import JoinGroup from './JoinGroup';
 import io from 'socket.io-client';
 
-const ENDPOINT = "https://onlychats-0acg.onrender.com";
+const ENDPOINT = process.env.REACT_APP_BACKEND_URL;
 var socket, selectedChatCompare;
 
 
