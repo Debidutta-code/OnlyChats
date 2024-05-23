@@ -448,7 +448,7 @@ io.on("connection", (socket) => {
     })
   })
 
-  socket.off('setup', (userId) => {
+  socket.off('disconnect', (userId) => {
     console.log("User Disconnected");
     socket.leave(userId);
   })
