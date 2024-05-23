@@ -105,7 +105,7 @@ const MessagesComponent = ({ setIsProfileClicked, isAnyOnesChatOpen, contactClic
             fetchAllMessages();
             selectedChatCompare = contactClicked;
         }
-    }, [isAnyOnesChatOpen, contactClicked, allMessages]);
+    }, [isAnyOnesChatOpen, contactClicked]);
 
     useEffect(() => {
         socket.on('message received', (newMessageReceived) => {
