@@ -436,7 +436,7 @@ io.on("connection", (socket) => {
 
   socket.on("new message", (newMessageReceived) => {
     var chat = newMessageReceived.chatroom;
-    // console.log(chat);
+    console.log(newMessageReceived);
     if(!chat.participants) return console.log("chat.user not define");
 
     chat.participants.forEach(user => {
