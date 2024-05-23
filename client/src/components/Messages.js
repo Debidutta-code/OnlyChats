@@ -87,7 +87,7 @@ const MessagesComponent = ({ setIsProfileClicked, isAnyOnesChatOpen, contactClic
                 const data = await response.json();
 
                 if (data.success) {
-                    setAllMessages([allMessages, ...data.messages]);
+                    setAllMessages(data.messages);
                     socket.emit('join chat', contactClicked._id)
                 }
             } catch (error) {
