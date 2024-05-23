@@ -57,24 +57,27 @@ const MessagesComponent = ({ setIsProfileClicked, isAnyOnesChatOpen, contactClic
     }, []);
 
     useEffect(() => {
-        console.log("hello world");
-        socket.on('message received', (newMessageReceived) => {
+        const handleMessageReceived = (newMessageReceived) => {
             console.log("newMessageReceived - ", newMessageReceived);
-            if(!selectedChatCompare || selectedChatCompare._id !== newMessageReceived.chatroom._id){
-                // give notification
-                if(contactClicked && contactClicked._id === newMessageReceived.chatroom._id){
+            if (!selectedChatCompare || selectedChatCompare._id !== newMessageReceived.chatroom._id) {
+                if (contactClicked && contactClicked._id === newMessageReceived.chatroom._id) {
                     return;
-                }
-                else if(!notification.includes(newMessageReceived)){
+                } else if (!notification.includes(newMessageReceived)) {
                     setAllMessages([...allMessages, newMessageReceived]);
                 }
-            }
-            else{
+            } else {
                 console.log(newMessageReceived);
                 setAllMessages([...allMessages, newMessageReceived]);
             }
-        } )
-    });
+        };
+    
+        socket.on('message received', handleMessageReceived);
+    
+        return () => {
+            socket.off('message received', handleMessageReceived);
+        };
+    }, [selectedChatCompare, contactClicked, notification, allMessages]);
+    
 
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView();

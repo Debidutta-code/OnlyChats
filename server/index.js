@@ -422,34 +422,32 @@ io.on("connection", (socket) => {
 
   socket.on("setup", (userId) => {
     socket.join(userId);
-    // console.log(userId);
     socket.emit("connected");
   });
 
   socket.on("join chat", (room) => {
     socket.join(room);
     console.log("user joined room - ", room);
-  })
+  });
 
   socket.on('typing', (room) => socket.in(room).emit("typing"));
   socket.on('stop typing', (room) => socket.in(room).emit("stop typing"));
 
   socket.on("new message", (newMessageReceived) => {
     var chat = newMessageReceived.chatroom;
-    if(!chat.participants) return console.log("chat.user not define");
+    if (!chat.participants) return console.log("chat.user not defined");
 
     chat.participants.forEach(user => {
-      if(user === newMessageReceived.sender._id){
+      if (user === newMessageReceived.sender._id) {
         return;
-      };
-      // console.log("new message", newMessageReceived);
+      }
       socket.in(user).emit("message received", newMessageReceived);
       socket.in(user).emit("message box received", newMessageReceived);
-    })
-  })
+    });
+  });
 
-  socket.off('disconnect', (userId) => {
+  socket.on('disconnect', () => {
     console.log("User Disconnected");
     socket.leave(userId);
-  })
+  });
 });

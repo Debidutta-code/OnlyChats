@@ -123,7 +123,7 @@ const ChatsList = ({ setIsProfileClicked, setIsAnyOnesChatOpen, isNewChatCreated
         setContactClicked(chat);
         setIsAnyOnesChatOpen(true);
         selectedChatCompare = contactClicked;
-        // setAllMessages([]);
+        setAllMessages([]);
     };
 
     function formatDate(timestamp) {
