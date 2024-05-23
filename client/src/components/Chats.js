@@ -44,8 +44,8 @@ const ChatsList = ({ setIsProfileClicked, setIsAnyOnesChatOpen, isNewChatCreated
                     if(newMessageReceived.chatroom._id === contactClicked._id)return;
                     setNotification([newMessageReceived, ...notification]);
                     setRefreshChats((prev) => !prev);
-                    setAllMessages([newMessageReceived, ...allMessages])
-                    console.log(allMessages);
+                    // setAllMessages([newMessageReceived, ...allMessages])
+                    // console.log(allMessages);
                 }
             }
             else {
@@ -122,6 +122,7 @@ const ChatsList = ({ setIsProfileClicked, setIsAnyOnesChatOpen, isNewChatCreated
         setAllMessages([]);
         setContactClicked(chat);
         setIsAnyOnesChatOpen(true);
+        selectedChatCompare = contactClicked;
     };
 
     function formatDate(timestamp) {
