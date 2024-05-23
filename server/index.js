@@ -444,6 +444,7 @@ io.on("connection", (socket) => {
       };
       // console.log("new message", newMessageReceived);
       socket.in(user).emit("message received", newMessageReceived);
+      socket.in(user).emit("message box received", newMessageReceived);
     })
   })
 
