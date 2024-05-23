@@ -66,12 +66,12 @@ const MessagesComponent = ({ setIsProfileClicked, isAnyOnesChatOpen, contactClic
                     return;
                 }
                 else if(!notification.includes(newMessageReceived)){
-                    setAllMessages([...allMessages, ...newMessageReceived]);
+                    setAllMessages([...allMessages, newMessageReceived]);
                 }
             }
             else{
                 console.log(newMessageReceived);
-                setAllMessages([...allMessages, ...newMessageReceived]);
+                setAllMessages([...allMessages, newMessageReceived]);
             }
         } )
     });
