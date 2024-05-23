@@ -57,6 +57,26 @@ const MessagesComponent = ({ setIsProfileClicked, isAnyOnesChatOpen, contactClic
     }, []);
 
     useEffect(() => {
+        console.log("hello world");
+        socket.on('message received', (newMessageReceived) => {
+            console.log("newMessageReceived - ", newMessageReceived);
+            if(!selectedChatCompare || selectedChatCompare._id !== newMessageReceived.chatroom._id){
+                // give notification
+                if(contactClicked && contactClicked._id === newMessageReceived.chatroom._id){
+                    return;
+                }
+                else if(!notification.includes(newMessageReceived)){
+                    setAllMessages([...allMessages, ...newMessageReceived]);
+                }
+            }
+            else{
+                console.log(newMessageReceived);
+                setAllMessages([...allMessages, ...newMessageReceived]);
+            }
+        } )
+    });
+
+    useEffect(() => {
         messagesEndRef.current?.scrollIntoView();
     }, [allMessages]);
 
@@ -103,25 +123,7 @@ const MessagesComponent = ({ setIsProfileClicked, isAnyOnesChatOpen, contactClic
         }
     }, [isAnyOnesChatOpen, contactClicked]);
 
-    useEffect(() => {
-        socket.on('message received', (newMessageReceived) => {
-            // console.log(newMessageReceived);
-            if (!selectedChatCompare || selectedChatCompare._id !== newMessageReceived.chatroom._id) {
-                // give notification
-                if (!notification.includes(newMessageReceived)) {
-                    // console.log(newMessageReceived, ".....................");
-                    if(newMessageReceived.chatroom._id === contactClicked._id)return;
-                    setNotification([newMessageReceived, ...notification]);
-                    // setRefreshChats((prev) => !prev);
-                    // setAllMessages([newMessageReceived, ...allMessages])
-                    // console.log(allMessages);
-                }
-            }
-            else {
-                setAllMessages([newMessageReceived, ...allMessages]);
-            }
-        })
-    });
+    
 
     const handleMessageInputChange = (e) => {
 
