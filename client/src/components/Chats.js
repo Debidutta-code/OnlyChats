@@ -34,23 +34,23 @@ const ChatsList = ({ setIsProfileClicked, setIsAnyOnesChatOpen, isNewChatCreated
 
     // console.log(notification, "-------------------------");
 
-    // useEffect(() => {
-    //     socket.on('message received', (newMessageReceived) => {
-    //         console.log(newMessageReceived);
-    //         if (!selectedChatCompare || selectedChatCompare._id !== newMessageReceived.chatroom._id) {
-    //             // give notification
-    //             if (!notification.includes(newMessageReceived)) {
-    //                 // console.log(newMessageReceived, ".....................");
-    //                 if(newMessageReceived.chatroom._id === contactClicked._id)return;
-    //                 setNotification([newMessageReceived, ...notification]);
-    //                 setRefreshChats((prev) => !prev);
-    //             }
-    //         }
-    //         else {
-    //             setAllMessages([...allMessages, newMessageReceived]);
-    //         }
-    //     })
-    // });
+    useEffect(() => {
+        socket.on('message received', (newMessageReceived) => {
+            console.log(newMessageReceived);
+            if (!selectedChatCompare || selectedChatCompare._id !== newMessageReceived.chatroom._id) {
+                // give notification
+                if (!notification.includes(newMessageReceived)) {
+                    // console.log(newMessageReceived, ".....................");
+                    if(newMessageReceived.chatroom._id === contactClicked._id)return;
+                    setNotification([newMessageReceived, ...notification]);
+                    setRefreshChats((prev) => !prev);
+                }
+            }
+            else {
+                setAllMessages([...allMessages, newMessageReceived]);
+            }
+        })
+    });
 
     useEffect(() => {
         if (contactClicked && notification) {
