@@ -104,6 +104,7 @@ const MessagesComponent = ({ setIsProfileClicked, isAnyOnesChatOpen, contactClic
     }, [isAnyOnesChatOpen, contactClicked]);
 
     useEffect(() => {
+        console.log("hello world");
         socket.on('message received', (newMessageReceived) => {
             console.log("newMessageReceived - ", newMessageReceived);
             if(!selectedChatCompare || selectedChatCompare._id !== newMessageReceived.chatroom._id){
