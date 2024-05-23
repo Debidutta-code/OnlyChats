@@ -120,8 +120,8 @@ const ChatsList = ({ setIsProfileClicked, setIsAnyOnesChatOpen, isNewChatCreated
     const handleChatClicked = (chat) => {
         // console.log("Clicked contact ID:", contact);
         // console.log(chat);
-        setAllMessages([]);
         setContactClicked(chat);
+        setAllMessages([]);
         setIsAnyOnesChatOpen(true);
         selectedChatCompare = contactClicked;
     };
