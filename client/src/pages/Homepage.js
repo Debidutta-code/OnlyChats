@@ -15,12 +15,30 @@ const Homepage = () => {
     const [contactClicked, setContactClicked] = useState({});
     const [contactFullDetails, setContactFullDetails] = useState({});
     const [allMessages, setAllMessages] = useState([]);
-    const [refreshOnLoad, setRefreshOnLoad] = useState(false);
     const [chatRoomFullDetails, setChatRoomFullDetails] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
 
     const { isLoggedIn, dp, userId } = useUser();
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 2000); // 2 seconds
+
+        // Cleanup timer if component is unmounted before 2 seconds
+        return () => clearTimeout(timer);
+    }, []);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 2000); // 2 seconds
+
+        // Cleanup timer if component is unmounted before 2 seconds
+        return () => clearTimeout(timer);
+    }, []);
 
     useEffect(() => {
         if (!isLoggedIn) {
@@ -32,51 +50,56 @@ const Homepage = () => {
         setIsAnyOnesChatOpen(false);
     }, []);
 
-    if (!isLoggedIn) {
-        return <Loading />;
-    }
+    
 
     return (
-        <div className="homepage-main-component">
-           <Navbar dp={dp ? dp.toString() : ''} setIsNewChatCreated={setIsNewChatCreated} />
+        <>
+        {isLoading ? (<div>
+            <Loading />
+        </div>) : (
 
-
-            <div className="homepage-main-chat-container">
-                <div className="homepage-main-chat-and-message-container">
-                    <ChatsList
-                        setIsProfileClicked={setIsProfileClicked}
-                        setIsAnyOnesChatOpen={setIsAnyOnesChatOpen}
-                        isNewChatCreated={isNewChatCreated}
-                        setContactClicked={setContactClicked}
-                        setContactFullDetails={setContactFullDetails}
-                        contactClicked={contactClicked}
-                        setAllMessages = {setAllMessages}
-                        allMessages = {allMessages}
-                        setChatRoomFullDetails = {setChatRoomFullDetails}
-                    />
-                    <MessagesComponent
-                        setIsProfileClicked={setIsProfileClicked}
-                        isAnyOnesChatOpen={isAnyOnesChatOpen}
-                        userId={userId}
-                        contactClicked={contactClicked}
-                        setContactFullDetails={setContactFullDetails}
-                        setIsAnyOnesChatOpen={setIsAnyOnesChatOpen}
-                        allMessages = {allMessages}
-                        setAllMessages = {setAllMessages}
-                        setChatRoomFullDetails = {setChatRoomFullDetails}
-                    />
+            <div className="homepage-main-component">
+               <Navbar dp={dp ? dp.toString() : ''} setIsNewChatCreated={setIsNewChatCreated} />
+    
+    
+                <div className="homepage-main-chat-container">
+                    <div className="homepage-main-chat-and-message-container">
+                        <ChatsList
+                            setIsProfileClicked={setIsProfileClicked}
+                            setIsAnyOnesChatOpen={setIsAnyOnesChatOpen}
+                            isNewChatCreated={isNewChatCreated}
+                            setContactClicked={setContactClicked}
+                            setContactFullDetails={setContactFullDetails}
+                            contactClicked={contactClicked}
+                            setAllMessages = {setAllMessages}
+                            allMessages = {allMessages}
+                            setChatRoomFullDetails = {setChatRoomFullDetails}
+                        />
+                        <MessagesComponent
+                            setIsProfileClicked={setIsProfileClicked}
+                            isAnyOnesChatOpen={isAnyOnesChatOpen}
+                            userId={userId}
+                            contactClicked={contactClicked}
+                            setContactFullDetails={setContactFullDetails}
+                            setIsAnyOnesChatOpen={setIsAnyOnesChatOpen}
+                            allMessages = {allMessages}
+                            setAllMessages = {setAllMessages}
+                            setChatRoomFullDetails = {setChatRoomFullDetails}
+                        />
+                    </div>
+                    {isProfileClicked && (
+                        <ProfileComponent
+                            contactFullDetails={contactFullDetails}
+                            chatRoomFullDetails = {chatRoomFullDetails}
+                            contactClicked = {contactClicked}
+                            setChatRoomFullDetails = {setChatRoomFullDetails}
+                            setIsProfileClicked = {setIsProfileClicked}
+                        />
+                    )}
                 </div>
-                {isProfileClicked && (
-                    <ProfileComponent
-                        contactFullDetails={contactFullDetails}
-                        chatRoomFullDetails = {chatRoomFullDetails}
-                        contactClicked = {contactClicked}
-                        setChatRoomFullDetails = {setChatRoomFullDetails}
-                        setIsProfileClicked = {setIsProfileClicked}
-                    />
-                )}
             </div>
-        </div>
+        )}
+        </>
     );
 };
 

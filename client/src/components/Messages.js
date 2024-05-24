@@ -10,7 +10,7 @@ import { useEffect, useRef, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import Picker from 'emoji-picker-react';
 import io from 'socket.io-client';
-import {ScaleLoader} from 'react-spinners';
+import {ScaleLoader, PulseLoader} from 'react-spinners';
 import { useUser } from "../UserContext";
 
 const MessageOptions = ({ handleLeaveMessage, handleDeleteChat }) => (
@@ -43,6 +43,7 @@ const MessagesComponent = ({ setIsProfileClicked, isAnyOnesChatOpen, contactClic
     const [socketConnected, setSocketConnected] = useState(false);
     const [typing, setTyping] = useState(false);
     const [isTyping, setIsTyping] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const {notification, setNotification} = useUser();
     
@@ -92,6 +93,7 @@ const MessagesComponent = ({ setIsProfileClicked, isAnyOnesChatOpen, contactClic
         // Request all the messages from the database
         const fetchAllMessages = async () => {
             try {
+                setLoading(true);
                 const chatId = contactClicked._id;
                 const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/fetchallmessages/${userId}/${chatId}`, {
                     method: "GET",
@@ -106,8 +108,10 @@ const MessagesComponent = ({ setIsProfileClicked, isAnyOnesChatOpen, contactClic
                     setAllMessages(data.messages);
                     socket.emit('join chat', contactClicked._id)
                 }
+                setLoading(false);
             } catch (error) {
                 console.error("Error fetching messages:", error);
+                setLoading(false);
             }
         }
 
@@ -359,6 +363,14 @@ const MessagesComponent = ({ setIsProfileClicked, isAnyOnesChatOpen, contactClic
 
                     {/* main message box component */}
                     {/* message-left-side */}
+                        {loading && (
+                            <div className="loading-message-container"><PulseLoader
+                            color="#f3fffd"
+                            margin={5}
+                            size={10}
+                            speedMultiplier={1}
+                          /></div>
+                        )}
                     <div className="homepage-message-box-main-content-container">
                         {/* Map over allMessages array */}
                         {allMessages.map((message, index) => (

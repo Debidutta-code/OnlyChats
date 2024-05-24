@@ -102,3 +102,11 @@
 .message-options button:hover {
     background-color: #372727;
 }
+
+.loading-message-container{
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+}
