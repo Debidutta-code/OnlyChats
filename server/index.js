@@ -388,17 +388,16 @@ app.post('/joinnewchatroom', async (req, res) => {
   }
 });
 
-
-const __dirname1 = path.resolve();
+const parentDir = path.resolve(__dirname, '..');
 
 if (process.env.NODE_ENV === 'production') {
   // Serve static files from the React app
-  app.use(express.static(path.join(__dirname1, '/client/build')));
+  app.use(express.static(path.join(parentDir, 'client', 'build')));
 
   // Handle any requests that don't match the above with the React app
   app.get('*', (req, res) => {
     console.log("Serving the React app");
-    res.sendFile(path.resolve(__dirname1, "client", "build", "index.html"));
+    res.sendFile(path.resolve(parentDir, 'client', 'build', 'index.html'));
   });
 } else {
   app.get('/', (req, res) => {
