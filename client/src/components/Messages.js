@@ -10,7 +10,7 @@ import { useEffect, useRef, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import Picker from 'emoji-picker-react';
 import io from 'socket.io-client';
-import {ScaleLoader, PulseLoader} from 'react-spinners';
+import {ScaleLoader} from 'react-spinners';
 import { useUser } from "../UserContext";
 
 const MessageOptions = ({ handleLeaveMessage, handleDeleteChat }) => (
@@ -363,15 +363,10 @@ const MessagesComponent = ({ setIsProfileClicked, isAnyOnesChatOpen, contactClic
 
                     {/* main message box component */}
                     {/* message-left-side */}
-                        {loading && (
-                            <div className="loading-message-container"><PulseLoader
-                            color="#f3fffd"
-                            margin={5}
-                            size={10}
-                            speedMultiplier={1}
-                          /></div>
-                        )}
                     <div className="homepage-message-box-main-content-container">
+                        {loading && (
+                            <div className="loading-message-container">Loading</div>
+                        )}
                         {/* Map over allMessages array */}
                         {allMessages.map((message, index) => (
                             <div key={index} className={`homepage-message-box-single-message-content-container ${message.sender._id === userId ? "homepage-right-side" : "homepage-left-side"}`}>
