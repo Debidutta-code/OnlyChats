@@ -445,7 +445,7 @@ io.on("connection", (socket) => {
     });
   });
 
-  socket.on('disconnect', () => {
+  socket.on('disconnect', (userId) => {
     console.log("User Disconnected");
     socket.leave(userId);
   });

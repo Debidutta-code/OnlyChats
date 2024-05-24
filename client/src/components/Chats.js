@@ -42,15 +42,17 @@ const ChatsList = ({ setIsProfileClicked, setIsAnyOnesChatOpen, isNewChatCreated
                 // give notification
                 if (!notification.includes(newMessageReceived)) {
                     // console.log(newMessageReceived, ".....................");
-                    if(newMessageReceived.chatroom._id === contactClicked._id)return;
+                    console.log("new messagereceived - ",newMessageReceived.chatroom._id);
+                    // if(newMessageReceived.chatroom._id === contactClicked._id)return;
                     setNotification([newMessageReceived, ...notification]);
                     // setRefreshChats((prev) => !prev);
-                    console.log(allMessages);
+                    // console.log(allMessages);
                     setAllMessages([...allMessages, newMessageReceived])
                     // console.log(allMessages);
                 }
             }
             else {
+                console.log("hello world");
                 setAllMessages([...allMessages, newMessageReceived]);
             }
         })
@@ -121,10 +123,8 @@ const ChatsList = ({ setIsProfileClicked, setIsAnyOnesChatOpen, isNewChatCreated
     const handleChatClicked = (chat) => {
         // console.log("Clicked contact ID:", contact);
         // console.log(chat);
+        setAllMessages([]);
         setContactClicked(chat);
-        if(prevContactClicked !== contactClicked){
-            setAllMessages([]);
-        }
         setPrevContactClicked(contactClicked);
         setIsAnyOnesChatOpen(true);
         selectedChatCompare = contactClicked;
