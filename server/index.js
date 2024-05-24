@@ -15,18 +15,24 @@ const MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://test1234:test1234@
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY || "hellodevthisisme"
 const allowedOrigins = ['http://localhost:3000', 'http://localhost:8080'];
 
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-};
+let corsOptions;
+if(process.env.NODE_ENV === "production"){
+  corsOptions = {};
+}
+else{
+  corsOptions = {
+    origin: function (origin, callback) {
+      if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true,
+  };
+}
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
