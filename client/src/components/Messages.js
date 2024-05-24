@@ -75,6 +75,7 @@ const MessagesComponent = ({ setIsProfileClicked, isAnyOnesChatOpen, contactClic
             }
         } )
     });
+    
 
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView();
