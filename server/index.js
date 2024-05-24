@@ -393,7 +393,7 @@ const __dirname1 = path.resolve();
 
 if (process.env.NODE_ENV === 'production') {
   // Serve static files from the React app
-  app.use(express.static(path.join(__dirname1, '../client/build')));
+  app.use(express.static(path.join(__dirname1, '/client/build')));
 
   // Handle any requests that don't match the above with the React app
   app.get('*', (req, res) => {
