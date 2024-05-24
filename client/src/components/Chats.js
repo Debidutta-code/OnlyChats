@@ -23,6 +23,7 @@ const ChatsList = ({ setIsProfileClicked, setIsAnyOnesChatOpen, isNewChatCreated
     const [showCreateNewRoom, setShowCreateNewRoom] = useState(false);
     const [showJoinRoom, setShowJoinRoom] = useState(false);
     const [socketConnected, setSocketConnected] = useState(false);
+    const [prevContactClicked, setPrevContactClicked] = useState(contactClicked);
 
     useEffect(() => {
         socket = io(ENDPOINT);
@@ -121,7 +122,10 @@ const ChatsList = ({ setIsProfileClicked, setIsAnyOnesChatOpen, isNewChatCreated
         // console.log("Clicked contact ID:", contact);
         // console.log(chat);
         setContactClicked(chat);
-        setAllMessages([]);
+        if(prevContactClicked !== contactClicked){
+            setAllMessages([]);
+        }
+        setPrevContactClicked(contactClicked);
         setIsAnyOnesChatOpen(true);
         selectedChatCompare = contactClicked;
     };
