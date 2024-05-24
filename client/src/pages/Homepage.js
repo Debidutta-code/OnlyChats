@@ -22,12 +22,12 @@ const Homepage = () => {
 
     const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     const timer = setTimeout(() => {
-    //         setIsLoading(false);
-    //     }, 2000); // 2 seconds
-    //     return () => clearTimeout(timer);
-    // }, []);
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 2000); // 2 seconds
+        return () => clearTimeout(timer);
+    }, []);
 
     useEffect(() => {
         if (!isLoggedIn) {
