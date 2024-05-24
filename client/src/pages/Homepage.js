@@ -16,7 +16,7 @@ const Homepage = () => {
     const [contactFullDetails, setContactFullDetails] = useState({});
     const [allMessages, setAllMessages] = useState([]);
     const [chatRoomFullDetails, setChatRoomFullDetails] = useState({});
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const { isLoggedIn, dp, userId } = useUser();
 
