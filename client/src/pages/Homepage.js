@@ -32,15 +32,6 @@ const Homepage = () => {
     }, []);
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setIsLoading(false);
-        }, 2000); // 2 seconds
-
-        // Cleanup timer if component is unmounted before 2 seconds
-        return () => clearTimeout(timer);
-    }, []);
-
-    useEffect(() => {
         if (!isLoggedIn) {
             navigate("/login");
         }
