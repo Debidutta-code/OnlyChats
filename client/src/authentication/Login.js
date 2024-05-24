@@ -87,7 +87,7 @@ const Login = () => {
 
   useEffect(() => {
     handleGoogleSignIn();
-  }, [email, password, handleGoogleSignIn]);
+  }, [email, password]);
 
   return (
     <div className="login-main-container">
