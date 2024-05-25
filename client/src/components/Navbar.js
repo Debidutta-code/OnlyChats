@@ -5,10 +5,12 @@ import OF from '../assets/of_logo.png';
 import { useState } from 'react';
 import SearchResult from './SearchResult';
 import { IoMdLogOut } from "react-icons/io";
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = ({ dp, setIsNewChatCreated }) => {
     const [searchedName, setSearchedName] = useState('');
     const [isSearchFocused, setIsSearchFocused] = useState(false);
+    const navigate = useNavigate();
 
     const handleLogoutClicked = () => {
         window.location.href = '/login';
@@ -16,6 +18,10 @@ const Navbar = ({ dp, setIsNewChatCreated }) => {
 
     const handleSearchInputChange = (e) => {
         setSearchedName(e.target.value);
+    }
+
+    const handleProfileClicked = () => {
+        navigate('/profileupdate')
     }
 
     return (
@@ -39,7 +45,9 @@ const Navbar = ({ dp, setIsNewChatCreated }) => {
             </div>
             <div className='navbar-main-profile-component'>
                 <button className='navbar-logout-btn' onClick={handleLogoutClicked}> <span>Log out</span>  <IoMdLogOut /> </button>
-                {dp && <img src={dp} className='navbar-main-profile-pic' alt="Profile"></img>}
+                <div className='navbar-main-profile-pic-component'>
+                    {dp && <img src={dp} className='navbar-main-profile-pic' alt="Profile" onClick={handleProfileClicked}></img>}
+                </div>
             </div>
         </div>
     )

@@ -1,0 +1,258 @@
+.profile-update-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgb(83, 70, 70); /* Light background */
+    color: white;
+}
+
+.profile-update-card {
+    width: 100%;
+    max-width: 800px;
+    background-color: rgb(83, 70, 70); /* Light card background */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    color: white; /* Dark text */
+}
+
+.profile-update-heading-and-cross{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profile-cross-cross-icon{
+    cursor: pointer;
+    background-color: rgba(52, 4, 4, 0.682);
+    display: flex;
+    align-items: center;
+    padding: 3px;
+    border-radius: 50%;
+}
+
+.profile-update-heading {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.profile-update-content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.profile-update-avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: rgb(83, 70, 70); /* Lighter placeholder */
+    margin-right: 30px;
+    position: relative;
+    cursor: pointer;
+}
+
+.profile-update-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-update-avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    color: white; /* Darker text */
+}
+
+.profile-update-avatar-placeholder span {
+    cursor: pointer;
+}
+
+.profile-update-file-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.profile-update-change-link {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.profile-update-change-label {
+    cursor: pointer;
+    color: #007bff; /* Accent color */
+    text-decoration: underline;
+    font-size: 0.9rem;
+}
+
+.profile-update-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-update-form {
+    margin-bottom: 20px;
+    background-color: rgb(83, 70, 70); /* Light form background */
+    padding: 20px; /* Added padding */
+    border-radius: 8px; /* Added border-radius */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Added box shadow */
+}
+
+.profile-update-group {
+    margin-bottom: 20px;
+}
+
+.profile-update-gender {
+    display: flex;
+    gap: 20px;
+}
+
+.profile-update-label {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.profile-update-input,
+.profile-update-textarea {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.2s ease-in-out;
+    background-color: rgb(83, 70, 70); /* Light input background */
+    color: white; /* Dark text */
+}
+
+.profile-update-input:focus,
+.profile-update-textarea:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.profile-update-textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.profile-update-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.2rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.profile-update-button:hover {
+    background-color: #0056b3; /* Darker hover color */
+}
+
+.profile-update-info {
+    margin-top: 20px;
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
+    color: white; /* Dark text */
+}
+
+.profile-update-info-item {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.profile-update-info-item span {
+    margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+    .profile-update-card {
+        padding: 20px;
+    }
+    .profile-update-avatar {
+        width: 150px;
+        height: 150px;
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+    .profile-update-content {
+        flex-direction: column;
+        align-items: center;
+    }
+    .profile-update-details {
+        width: 100%;
+    }
+}
+
+/* Dark Theme */
+.profile-update-container.dark-theme {
+    background-color: #222; /* Dark background */
+}
+
+.profile-update-card.dark-theme {
+    background-color: #222; /* Dark card background */
+    color: #fff; /* White text */
+}
+
+.profile-update-avatar.dark-theme {
+    background-color: #444; /* Darker placeholder */
+}
+
+.profile-update-avatar-placeholder.dark-theme {
+    color: white; /* Lighter text */
+}
+
+.profile-update-form.dark-theme {
+    background-color: #333; /* Dark form background */
+    color: #fff; /* Light text */
+    border: 1px solid #555; /* Darker border */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Dark box shadow */
+}
+
+.profile-update-input.dark-theme,
+.profile-update-textarea.dark-theme {
+    background-color: #333; /* Dark input background */
+    color: #fff; /* Light text */
+    border-color: #555; /* Darker border */
+}
+
+.profile-update-label.dark-theme {
+    color: #fff; /* White text */
+}
+
+.profile-update-info.dark-theme {
+    color: #fff; /* White text */
+}
+
+.profile-update-container.loading-cursor {
+    cursor: progress;
+}
+
+.profile-update-button.loading {
+    cursor: progress;
+    background-color: #002757; /* Change the button background to indicate loading */
+    color: #666; /* Change the button text color to indicate loading */
+}

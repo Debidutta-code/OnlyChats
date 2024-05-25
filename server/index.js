@@ -393,6 +393,45 @@ app.post('/joinnewchatroom', async (req, res) => {
   }
 });
 
+app.get('/getuserprofiledetails/:userId', async (req, res) => {
+  const userId = req.params.userId;
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    res.status(200).json(user);
+  } catch (error) {
+    console.error('Error fetching user details:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+app.post('/api/updateuserprofile/:userId', async (req, res) => {
+  const { userId } = req.params;
+  const { name, bio, gender, profileImageUrl } = req.body;
+
+  try {
+      const updatedUser = await User.findByIdAndUpdate(userId, {
+          username: name,
+          bio: bio,
+          gender: gender,
+          dp: profileImageUrl
+      }, { new: true });
+
+      if (!updatedUser) {
+          return res.status(404).json({ message: 'User not found' });
+      }
+
+      res.status(200).json({ message: 'Profile updated successfully', user: updatedUser });
+  } catch (error) {
+      console.error('Error updating profile:', error);
+      res.status(500).json({ message: 'Failed to update profile' });
+  }
+});
+
+// ----------------------------------- production -----------------------------------------
+
 const parentDir = path.resolve(__dirname, '..');
 
 if (process.env.NODE_ENV === 'production') {
@@ -409,6 +448,8 @@ if (process.env.NODE_ENV === 'production') {
     res.json({ message: "App Launched in Development Mode" });
   });
 }
+
+// ----------------------------------- production -----------------------------------------
 
 const server = app.listen(PORT, () => {
   console.log(`Server is running on ${PORT}`);
