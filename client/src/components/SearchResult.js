@@ -1,25 +1,29 @@
-// SearchResult.js
 import './SearchResult.css';
 import { useEffect, useState } from 'react';
 import { PiGenderFemaleFill, PiGenderMaleFill } from "react-icons/pi";
 import { useUser } from '../UserContext'; // Import useUser hook from UserContext
 import { IoCloseSharp } from "react-icons/io5";
+import { BarLoader } from 'react-spinners';
 
 const SearchResult = ({ setIsSearchFocused, searchedName, setIsNewChatCreated }) => {
     const [usersList, setUsersList] = useState([]);
     const { userId } = useUser(); // Retrieve userId from the UserContext
+    const [loading, setLoading] = useState(false);
+
     useEffect(() => {
         const fetchAllUsers = async () => {
             try {
+                setLoading(true);
                 const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/getallusers`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch users');
                 }
                 const data = await response.json();
-                console.log("filter data - ", data.users);
                 setUsersList(data.users);
+                setLoading(false);
             } catch (error) {
                 console.error('Error fetching users:', error);
+                setLoading(false);
             }
         };
 
@@ -27,8 +31,7 @@ const SearchResult = ({ setIsSearchFocused, searchedName, setIsNewChatCreated })
     }, []);
 
     const handleCardClicked = async (_id) => {
-        console.log("card clicked");
-        console.log(_id);
+        console.log("Card clicked: ", _id);
 
         try {
             const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/createnewchat`, {
@@ -37,7 +40,7 @@ const SearchResult = ({ setIsSearchFocused, searchedName, setIsNewChatCreated })
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    userId: userId, // Replace 'userId' with the actual logged-in user's ID
+                    userId: userId, // Use the logged-in user's ID
                     participantId: _id
                 })
             });
@@ -46,23 +49,22 @@ const SearchResult = ({ setIsSearchFocused, searchedName, setIsNewChatCreated })
 
             if (data.success) {
                 // Chatroom created successfully, handle accordingly
-                setIsNewChatCreated((prevdata) => prevdata + 1)
-                console.log("Chatroom created:", data.chatroom);
+                setIsNewChatCreated(prev => prev + 1);
+                console.log("Chatroom created: ", data.chatroom);
             } else {
                 // Chatroom creation failed, handle accordingly
-                console.error("Failed to create chatroom:", data.message);
+                console.error("Failed to create chatroom: ", data.message);
             }
         } catch (error) {
-            console.error("Error creating chatroom:", error);
+            console.error("Error creating chatroom: ", error);
         }
 
         setIsSearchFocused(false);
-    }
-    
+    };
+
     const handleSearchCancelClicked = () => {
         setIsSearchFocused(false);
-    }
-
+    };
 
     // Filter users based on searchedName and exclude current user
     const filteredUsers = usersList.filter(user => user.username.toLowerCase().includes(searchedName.toLowerCase()) && user._id !== userId);
@@ -89,11 +91,22 @@ const SearchResult = ({ setIsSearchFocused, searchedName, setIsNewChatCreated })
                     </div>
                 ))}
             </div>
-                <div className='search-result-cancel-button' onClick={handleSearchCancelClicked}>
-                    <h1>Cancel </h1> <span><IoCloseSharp /></span> 
+            {loading && (
+                <div className='search-loading-page'>
+                    <div className="loader-wrapper">
+                        <BarLoader
+                            color="#7ad9ff"
+                            height={2}
+                            width={480}
+                        />
+                    </div>
                 </div>
+            )}
+            <div className='search-result-cancel-button' onClick={handleSearchCancelClicked}>
+                <h1>Cancel </h1> <span><IoCloseSharp /></span>
+            </div>
         </div>
-    )
-}
+    );
+};
 
 export default SearchResult;

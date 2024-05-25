@@ -144,3 +144,15 @@
 .search-result-cancel-button:hover{
     background-color: rgba(255, 0, 0, 0.239);
 }
+
+.search-loading-page{
+    display: flex;
+    justify-content: center;
+    border-radius: 20px;
+    color: rgb(122, 217, 255);
+}
+
+.loader-wrapper {
+    border-radius: 50px; /* Adjust the value as needed */
+    overflow: hidden; /* Ensures the border-radius is applied correctly */
+}
