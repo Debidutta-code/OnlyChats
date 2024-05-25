@@ -42,12 +42,12 @@ const ChatsList = ({ setIsProfileClicked, setIsAnyOnesChatOpen, isNewChatCreated
                 // give notification
                 if (!notification.includes(newMessageReceived)) {
                     // console.log(newMessageReceived, ".....................");
-                    console.log("new messagereceived - ",newMessageReceived.chatroom._id);
+                    // console.log("new messagereceived - ",newMessageReceived.chatroom._id);
                     // if(newMessageReceived.chatroom._id === contactClicked._id)return;
                     setNotification([newMessageReceived, ...notification]);
                     // setRefreshChats((prev) => !prev);
                     // console.log(allMessages);
-                    setAllMessages([...allMessages, newMessageReceived])
+                    // setAllMessages([...allMessages, newMessageReceived])
                     // console.log(allMessages);
                 }
             }
