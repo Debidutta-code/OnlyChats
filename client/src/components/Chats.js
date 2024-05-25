@@ -246,7 +246,7 @@ const ChatsList = ({ setIsProfileClicked, setIsAnyOnesChatOpen, isNewChatCreated
                                         </div>
                                     ) : (
                                         <div>
-                                            <p>Say Hey👋to this hoe</p>
+                                            <p>Say hey👋 to start Conversation ❤️</p> 
                                         </div>
                                     )}
                                 </div>
@@ -278,7 +278,7 @@ const ChatsList = ({ setIsProfileClicked, setIsAnyOnesChatOpen, isNewChatCreated
                                         </div>
                                     ) : (
                                         <div>
-                                            <p>Say Hey👋to this hoe</p>
+                                            <p>Say hey👋 to start Conversation ❤️</p>
                                         </div>
                                     )}
                                             </>
