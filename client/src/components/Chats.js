@@ -182,7 +182,7 @@ const ChatsList = ({ setIsProfileClicked, setIsAnyOnesChatOpen, isNewChatCreated
                         <JoinGroup setShowJoinRoom={setShowJoinRoom} />
                     )}
                     {showCreateNewRoom && (
-                        <CreateNewGroup setShowCreateNewRoom={setShowCreateNewRoom} />
+                        <CreateNewGroup setShowCreateNewRoom={setShowCreateNewRoom} setRefreshChats={setRefreshChats} />
                     )}
                 </div>
                 

@@ -8,7 +8,7 @@ import { IoImage } from "react-icons/io5";
 import axios from "axios";
 import { useUser } from "../UserContext";
 
-const CreateNewGroup = ({ setShowCreateNewRoom }) => {
+const CreateNewGroup = ({ setShowCreateNewRoom, setRefreshChats }) => {
     const [profileImage, setProfileImage] = useState(null);
     const [previewImage, setPreviewImage] = useState(DANI);
     const [allUsers, setAllUsers] = useState([]);
@@ -40,16 +40,13 @@ const CreateNewGroup = ({ setShowCreateNewRoom }) => {
             let resourceType = type === "image" ? "image" : "video";
             let api = `https://api.cloudinary.com/v1_1/dukdsugqc/${resourceType}/upload`;
 
-            setLoading(true);
 
             const res = await axios.post(api, data);
             const { secure_url } = res.data;
 
-            setLoading(false);
 
             return secure_url;
         } catch (error) {
-            setLoading(false);
             console.error(error);
             return null;
         }
@@ -129,6 +126,8 @@ const CreateNewGroup = ({ setShowCreateNewRoom }) => {
             return;
         }
 
+        setLoading(true);
+
         const avatarimgUrl = await uploadFile("image");
 
         const groupChatDetails = {
@@ -152,11 +151,15 @@ const CreateNewGroup = ({ setShowCreateNewRoom }) => {
 
             if (data.success) {
                 console.log("Group chat created successfully");
+                setShowCreateNewRoom(false);
+                setRefreshChats((prev) => !prev);
             } else {
                 console.error("Failed to create group chat:", data.message);
             }
+            setLoading(false);
         } catch (error) {
             console.error("Error creating group chat:", error);
+            setLoading(false);
         }
     };
 
