@@ -418,7 +418,7 @@ const io = require('socket.io')(server, {
   cors: {
     origin: "http://localhost:3000",
   },
-  pingTimeout: 60000,
+  pingTimeout: 120000,
 });
 
 io.on("connection", (socket) => {
